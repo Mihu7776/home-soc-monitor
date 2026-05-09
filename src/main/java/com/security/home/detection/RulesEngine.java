@@ -2,12 +2,15 @@ package com.security.home.detection;
 
 import com.security.home.entity.Device;
 import com.security.home.entity.SecurityEvent;
+import com.security.home.entity.SecurityEventType;
+import com.security.home.entity.EventSeverity;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class RulesEngine {
 
-    // 🔥 tracking requestów w czasie
     private final Map<String, List<Long>> requestTimeline = new HashMap<>();
 
     public List<SecurityEvent> analyze(Device device) {
@@ -17,20 +20,17 @@ public class RulesEngine {
         String mac = device.getMac();
         long now = System.currentTimeMillis();
 
-        // 📊 zapis requestu w czasie
         requestTimeline.putIfAbsent(mac, new ArrayList<>());
         List<Long> timestamps = requestTimeline.get(mac);
 
         timestamps.add(now);
 
-        // 🔥 czyścimy stare wpisy (> 2 sekundy)
         timestamps.removeIf(t -> now - t > 2000);
 
-        // 🚨 RULE: PORT SCAN
         if (timestamps.size() > 8) {
             alerts.add(new SecurityEvent(
-                    "PORT_SCAN",
-                    "HIGH",
+                    SecurityEventType.PORT_SCAN,
+                    EventSeverity.HIGH,
                     "Possible port scanning detected from device: " + device.getVendor(),
                     device.getIp()
             ));

@@ -1,17 +1,24 @@
 package com.security.home.detection;
 
-import com.security.home.entity.Device;
-import com.security.home.entity.SecurityEvent;
+import com.security.home.entity.*;
+import com.security.home.repository.SecurityEventRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class DetectionEngine {
 
-    // 🔥 stan systemu (jak w realnym IDS/SOC sensorze)
     private final Set<String> knownDevices = new HashSet<>();
-    private final List<SecurityEvent> events = new ArrayList<>();
 
-    private final RulesEngine rulesEngine = new RulesEngine();
+    private final RulesEngine rulesEngine;
+    private final SecurityEventRepository repository;
+
+    public DetectionEngine(RulesEngine rulesEngine,
+                           SecurityEventRepository repository) {
+        this.rulesEngine = rulesEngine;
+        this.repository = repository;
+    }
 
     // =========================
     // NORMAL TRAFFIC PIPELINE
@@ -22,37 +29,31 @@ public class DetectionEngine {
 
         String mac = normalize(device.getMac());
 
-        System.out.println("[ENGINE] Processing device: " + mac);
-
-        // 🔥 NEW DEVICE DETECTION
+        // NEW DEVICE DETECTION
         if (knownDevices.add(mac)) {
 
             SecurityEvent event = new SecurityEvent(
-                    "NEW_DEVICE",
-                    "MEDIUM",
-                    "Unknown device joined network: " + device.getVendor(),
+                    SecurityEventType.NEW_DEVICE,
+                    EventSeverity.MEDIUM,
+                    "New device joined network: " + device.getVendor(),
                     device.getIp()
             );
 
-            results.add(event);
-
-            System.out.println("[ENGINE] NEW DEVICE DETECTED: " + mac);
-
-        } else {
-            System.out.println("[ENGINE] Known device: " + mac);
+            results.add(repository.save(event));
         }
 
-        // 🔥 RULE ENGINE (normal behavioral detection)
-        results.addAll(rulesEngine.analyze(device));
+        // RULES ENGINE ANALYSIS
+        List<SecurityEvent> ruleEvents = rulesEngine.analyze(device);
 
-        // 🔥 zapis historii (SIEM-like log store)
-        events.addAll(results);
+        for (SecurityEvent event : ruleEvents) {
+            results.add(repository.save(event));
+        }
 
         return results;
     }
 
     // =========================
-    // ATTACK PIPELINE (SEPARATE SEMANTICS)
+    // ATTACK PIPELINE
     // =========================
     public List<SecurityEvent> processAttack(Device device) {
 
@@ -60,30 +61,19 @@ public class DetectionEngine {
 
         String mac = normalize(device.getMac());
 
-        System.out.println("[ENGINE] ATTACK MODE ACTIVE: " + mac);
-
-        // 🔥 symulacja zachowania atakującego (nie 1 event, tylko pattern)
         for (int i = 0; i < 5; i++) {
 
             SecurityEvent event = new SecurityEvent(
-                    "PORT_SCAN",
-                    "HIGH",
-                    "Repeated port scanning behavior detected from device: " + device.getVendor(),
+                    SecurityEventType.PORT_SCAN,
+                    EventSeverity.HIGH,
+                    "Port scanning detected from device: " + device.getVendor(),
                     device.getIp()
             );
 
-            results.add(event);
-            events.add(event);
+            results.add(repository.save(event));
         }
 
         return results;
-    }
-
-    // =========================
-    // HISTORIAN (SIEM-style storage)
-    // =========================
-    public List<SecurityEvent> getEvents() {
-        return Collections.unmodifiableList(events);
     }
 
     // =========================

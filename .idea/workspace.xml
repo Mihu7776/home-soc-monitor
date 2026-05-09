@@ -5,10 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ce3d8d8-bc74-4892-80ff-9245b2037f96" name="Changes" comment="Projekt bezpieczenstwa sieci">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/security/home/detection/RulesEngine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/security/home/HomeNetworkThreatDetectionApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/security/home/controller/SecurityEventController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/security/home/entity/EventSeverity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/security/home/entity/SecurityEventType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/security/home/model/NetworkObservation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/security/home/repository/DeviceRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/security/home/repository/SecurityEventRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/security/home/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/security/home/detection/DetectionEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/security/home/detection/DetectionEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/security/home/detection/NetworkSimulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/security/home/detection/NetworkSimulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/security/home/detection/RulesEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/security/home/detection/RulesEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/security/home/entity/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/security/home/entity/Device.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/security/home/entity/SecurityEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/security/home/entity/SecurityEvent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +53,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -48,9 +61,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Mihu7776&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Mihu7776/home-soc-monitor.git&quot;,
+    &quot;accountId&quot;: &quot;524f422d-2417-4514-a635-d453ee055d3c&quot;
+  }
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2,
@@ -64,12 +92,19 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "Maven.home-network-threat-detection [org.springframework.boot:spring-boot-maven-plugin:3.3.5:run].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.HomeNetworkThreatDetectionApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "master",
@@ -84,14 +119,24 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "to.speed.mode.migration.done": "true"
+    "settings.editor.selected.configurable": "MavenSettings",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Michal Swislocki\IdeaProjects\home-network-threat-detection\src\main\java\com\security\home" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="HomeNetworkThreatDetectionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="home-network-threat-detection" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.security.home.HomeNetworkThreatDetectionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -100,6 +145,9 @@
       </set>
     </attachedChunks>
   </component>
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Logical" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="5ce3d8d8-bc74-4892-80ff-9245b2037f96" name="Changes" comment="" />
@@ -107,6 +155,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1776798427615</updated>
+      <workItem from="1778685070696" duration="716000" />
+      <workItem from="1778705757522" duration="196000" />
+      <workItem from="1778706085380" duration="6000" />
+      <workItem from="1778706118468" duration="328000" />
+      <workItem from="1778706661419" duration="3955000" />
     </task>
     <task id="LOCAL-00001" summary="Projekt bezpieczenstwa sieci">
       <option name="closed" value="true" />
@@ -124,7 +177,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776800298116</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Projekt bezpieczenstwa sieci">
+      <option name="closed" value="true" />
+      <created>1778331422715</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778331422716</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Projekt bezpieczenstwa sieci">
+      <option name="closed" value="true" />
+      <created>1778331458585</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778331458585</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
