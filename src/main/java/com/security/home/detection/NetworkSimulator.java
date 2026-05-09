@@ -11,7 +11,7 @@ public class NetworkSimulator {
     private final DetectionEngine engine;
     private final Random random = new Random();
 
-    // 🔥 STAŁA “DOMOWA SIEĆ” (realistyczne urządzenia)
+    // 🔥 STAŁA “DOMOWA SIEĆ”
     private final List<Device> devices = List.of(
             new Device("192.168.0.10", "AA:BB:CC:01", "TP-Link Router"),
             new Device("192.168.0.11", "AA:BB:CC:02", "iPhone"),
@@ -28,23 +28,28 @@ public class NetworkSimulator {
 
         System.out.println("\n=== NETWORK TRAFFIC SIMULATION START ===\n");
 
-        // 🔥 symulujemy 15 zdarzeń (ruch w czasie)
         for (int i = 0; i < 15; i++) {
 
             Device device = pickRandomDevice();
 
-            SecurityEvent event = engine.process(device);
+            List<SecurityEvent> events = engine.process(device);
 
-            if (event != null) {
-                System.out.println("🚨 EVENT: " + event.getType());
-                System.out.println("   " + event.getMessage());
-                System.out.println("   SRC: " + event.getSourceIp());
-            } else {
+            if (events.isEmpty()) {
                 System.out.println("OK: " + device.getIp() + " (" + device.getVendor() + ")");
+            } else {
+                for (SecurityEvent e : events) {
+                    System.out.println("🚨 " + e.getType() + " [" + e.getSeverity() + "]");
+                    System.out.println("   " + e.getMessage());
+                    System.out.println("   SRC: " + e.getSourceIp());
+                }
             }
 
             sleep();
         }
+
+        System.out.println("\n--- SWITCHING TO ATTACK SIMULATION ---\n");
+
+        simulateAttack(devices.get(4));
 
         System.out.println("\n=== SIMULATION END ===\n");
     }
@@ -55,8 +60,31 @@ public class NetworkSimulator {
 
     private void sleep() {
         try {
-            Thread.sleep(300); // symulacja “czasu sieci”
+            Thread.sleep(300);
         } catch (InterruptedException ignored) {
         }
+    }
+
+    private void simulateAttack(Device attacker) {
+
+        System.out.println("\n⚠️ SIMULATING PORT SCAN FROM: " + attacker.getIp());
+
+        for (int i = 0; i < 15; i++) {
+
+            List<SecurityEvent> events = engine.processAttack(attacker);
+
+            for (SecurityEvent e : events) {
+                System.out.println("🚨 " + e.getType() + " [" + e.getSeverity() + "]");
+                System.out.println("   " + e.getMessage());
+                System.out.println("   SRC: " + e.getSourceIp());
+            }
+
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException ignored) {
+            }
+        }
+
+        System.out.println("\n⚠️ ATTACK SIMULATION END\n");
     }
 }
