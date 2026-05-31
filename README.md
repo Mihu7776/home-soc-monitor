@@ -23,8 +23,22 @@ Przykladowe mapowania MITRE:
 
 ## Uruchomienie w Dockerze
 
+Na Linuxie wymagane sa:
+
+- Docker Engine,
+- Docker Compose v2, czyli komenda `docker compose`.
+
+Pierwsze uruchomienie:
+
 ```bash
-docker compose up --build
+cp .env.example .env
+docker compose up --build -d home-soc-monitor
+```
+
+Albo przez skrypt:
+
+```bash
+sh scripts/linux-start.sh
 ```
 
 API bedzie dostepne na:
@@ -63,6 +77,24 @@ Ten sam scenariusz jako osobny kontener:
 
 ```bash
 docker compose --profile attack up --build
+```
+
+Albo:
+
+```bash
+sh scripts/linux-attack.sh
+```
+
+Normalny ruch IoT jako osobny kontener:
+
+```bash
+sh scripts/linux-normal-traffic.sh
+```
+
+Zatrzymanie srodowiska:
+
+```bash
+sh scripts/linux-stop.sh
 ```
 
 Zasymuluj eksfiltracje ze Smart TV:
