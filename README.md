@@ -2,7 +2,7 @@
 
 Backend demonstracyjny do pracy dyplomowej: analiza ryzyka wycieku danych z sieci domowej przez sprzet IoT.
 
-Projekt symuluje prosty domowy SOC dla ruchu z urzadzen takich jak Smart TV, kamera IoT, PC, telefon i router. Aplikacja przyjmuje obserwacje ruchu sieciowego, zapisuje alerty do H2 i wystawia REST API do testow lokalnych oraz scenariuszy ataku.
+Projekt symuluje prosty domowy SOC dla ruchu z urzadzen takich jak Smart TV, kamera IoT, PC, telefon i router. Aplikacja przyjmuje obserwacje ruchu sieciowego, zapisuje alerty do lokalnej H2 lub PostgreSQL w Dockerze i wystawia REST API do testow lokalnych oraz scenariuszy ataku.
 
 ## Co wykrywa
 
@@ -23,8 +23,23 @@ Przykladowe mapowania MITRE:
 
 ## Uruchomienie w Dockerze
 
+Na Linuxie wymagane sa:
+
+- Docker Engine,
+- Docker Compose v2, czyli komenda `docker compose`.
+
+Pierwsze uruchomienie:
+
 ```bash
-docker compose up --build
+cp .env.example .env
+# Ustaw w .env wlasne POSTGRES_PASSWORD.
+docker compose up --build -d home-soc-monitor
+```
+
+Albo przez skrypt:
+
+```bash
+sh scripts/linux-start.sh
 ```
 
 API bedzie dostepne na:
@@ -63,6 +78,24 @@ Ten sam scenariusz jako osobny kontener:
 
 ```bash
 docker compose --profile attack up --build
+```
+
+Albo:
+
+```bash
+sh scripts/linux-attack.sh
+```
+
+Normalny ruch IoT jako osobny kontener:
+
+```bash
+sh scripts/linux-normal-traffic.sh
+```
+
+Zatrzymanie srodowiska:
+
+```bash
+sh scripts/linux-stop.sh
 ```
 
 Zasymuluj eksfiltracje ze Smart TV:
@@ -133,6 +166,9 @@ Wymagania: Java 21 i Maven.
 mvn test
 mvn spring-boot:run
 ```
+
+Domyslny profil `dev` zapisuje dane do lokalnego pliku H2 w katalogu `data/`.
+Profil `docker` korzysta z PostgreSQL uruchamianego przez Docker Compose. Dane sa przechowywane w wolumenie `postgres-data`, wiec restart kontenera aplikacji nie usuwa historii alertow.
 
 H2 console:
 
