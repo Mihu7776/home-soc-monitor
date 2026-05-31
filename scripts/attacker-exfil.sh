@@ -1,10 +1,14 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/usr/bin/env sh
+set -eu
 
 API_URL="${API_URL:-http://localhost:8080}"
 SOURCE_IP="${SOURCE_IP:-192.168.0.14}"
 SOURCE_MAC="${SOURCE_MAC:-AA:BB:CC:05}"
 VENDOR="${VENDOR:-IoT Camera}"
+
+until curl -fsS "${API_URL}/actuator/health" > /dev/null 2>&1; do
+  sleep 2
+done
 
 for port in 21 22 23 53 80 443 554 1883 5000 8080 8443; do
   curl -s -X POST "${API_URL}/api/observe" \

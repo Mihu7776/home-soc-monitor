@@ -1,9 +1,11 @@
 package com.security.home.controller;
 
 import com.security.home.detection.DetectionEngine;
+import com.security.home.detection.SocReportService;
 import com.security.home.entity.Device;
 import com.security.home.entity.SecurityEvent;
 import com.security.home.model.NetworkObservation;
+import com.security.home.model.SocReport;
 import com.security.home.repository.DeviceRepository;
 import com.security.home.repository.SecurityEventRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,13 +26,16 @@ public class SecurityEventController {
     private final SecurityEventRepository repository;
     private final DeviceRepository deviceRepository;
     private final DetectionEngine engine;
+    private final SocReportService reportService;
 
     public SecurityEventController(SecurityEventRepository repository,
                                    DeviceRepository deviceRepository,
-                                   DetectionEngine engine) {
+                                   DetectionEngine engine,
+                                   SocReportService reportService) {
         this.repository = repository;
         this.deviceRepository = deviceRepository;
         this.engine = engine;
+        this.reportService = reportService;
     }
 
     @GetMapping("/devices")
@@ -41,6 +46,11 @@ public class SecurityEventController {
     @GetMapping("/events")
     public List<SecurityEvent> getEvents() {
         return repository.findTop100ByOrderByTimestampDesc();
+    }
+
+    @GetMapping("/report")
+    public SocReport getReport() {
+        return reportService.buildReport();
     }
 
     @DeleteMapping("/events")

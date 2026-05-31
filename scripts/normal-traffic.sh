@@ -1,9 +1,13 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/usr/bin/env sh
+set -eu
 
 API_URL="${API_URL:-http://localhost:8080}"
 
-for i in $(seq 1 5); do
+until curl -fsS "${API_URL}/actuator/health" > /dev/null 2>&1; do
+  sleep 2
+done
+
+for i in 1 2 3 4 5; do
   curl -s -X POST "${API_URL}/api/observe" \
     -H "Content-Type: application/json" \
     -d "{

@@ -26,6 +26,8 @@ public class SecurityEvent {
     private String protocol;
     private Long bytesOut;
     private Integer riskScore;
+    private String mitreTactic;
+    private String mitreTechnique;
 
     @Column(length = 1024)
     private String evidence;
@@ -40,7 +42,7 @@ public class SecurityEvent {
                          EventSeverity severity,
                          String message,
                          String sourceIp) {
-        this(type, severity, message, sourceIp, null, null, null, null, null, null, null);
+        this(type, severity, message, sourceIp, null, null, null, null, null, null, null, null, null);
     }
 
     public SecurityEvent(SecurityEventType type,
@@ -53,6 +55,8 @@ public class SecurityEvent {
                          String protocol,
                          Long bytesOut,
                          Integer riskScore,
+                         String mitreTactic,
+                         String mitreTechnique,
                          String evidence) {
         this.type = type;
         this.severity = severity;
@@ -64,6 +68,8 @@ public class SecurityEvent {
         this.protocol = protocol;
         this.bytesOut = bytesOut;
         this.riskScore = riskScore;
+        this.mitreTactic = mitreTactic;
+        this.mitreTechnique = mitreTechnique;
         this.evidence = evidence;
         this.timestamp = LocalDateTime.now();
     }
@@ -119,6 +125,14 @@ public class SecurityEvent {
         return riskScore;
     }
 
+    public String getMitreTactic() {
+        return mitreTactic;
+    }
+
+    public String getMitreTechnique() {
+        return mitreTechnique;
+    }
+
     public String getEvidence() {
         return evidence;
     }
@@ -169,6 +183,14 @@ public class SecurityEvent {
 
     public void setRiskScore(Integer riskScore) {
         this.riskScore = riskScore;
+    }
+
+    public void setMitreTactic(String mitreTactic) {
+        this.mitreTactic = mitreTactic;
+    }
+
+    public void setMitreTechnique(String mitreTechnique) {
+        this.mitreTechnique = mitreTechnique;
     }
 
     public void setEvidence(String evidence) {

@@ -1,7 +1,6 @@
 package com.security.home.detection;
 
 import com.security.home.entity.Device;
-import com.security.home.entity.EventSeverity;
 import com.security.home.entity.SecurityEvent;
 import com.security.home.entity.SecurityEventType;
 import com.security.home.model.NetworkObservation;
@@ -23,13 +22,16 @@ public class DetectionEngine {
     private final RulesEngine rulesEngine;
     private final SecurityEventRepository repository;
     private final DeviceRepository deviceRepository;
+    private final RiskScoringService riskScoringService;
 
     public DetectionEngine(RulesEngine rulesEngine,
                            SecurityEventRepository repository,
-                           DeviceRepository deviceRepository) {
+                           DeviceRepository deviceRepository,
+                           RiskScoringService riskScoringService) {
         this.rulesEngine = rulesEngine;
         this.repository = repository;
         this.deviceRepository = deviceRepository;
+        this.riskScoringService = riskScoringService;
     }
 
     public List<SecurityEvent> process(Device device) {
@@ -47,10 +49,16 @@ public class DetectionEngine {
 
         if (knownDevices.add(sourceKey)) {
             registerDevice(observation);
+            RiskScoringService.RiskScore risk = riskScoringService.score(
+                    SecurityEventType.NEW_DEVICE,
+                    observation,
+                    35,
+                    "fingerprint=" + sourceKey
+            );
 
             SecurityEvent event = new SecurityEvent(
                     SecurityEventType.NEW_DEVICE,
-                    EventSeverity.MEDIUM,
+                    risk.severity(),
                     "New device observed in home network: " + displayDevice(observation),
                     observation.sourceIp(),
                     observation.sourceMac(),
@@ -58,8 +66,10 @@ public class DetectionEngine {
                     observation.destinationPort(),
                     observation.protocol(),
                     observation.bytesOut(),
-                    45,
-                    "fingerprint=" + sourceKey
+                    risk.score(),
+                    risk.mitreTactic(),
+                    risk.mitreTechnique(),
+                    risk.evidence()
             );
 
             results.add(repository.save(event));

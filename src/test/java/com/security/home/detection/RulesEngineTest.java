@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class RulesEngineTest {
 
-    private final RulesEngine rulesEngine = new RulesEngine();
+    private final RulesEngine rulesEngine = new RulesEngine(new RiskScoringService());
 
     @Test
     void detectsLargeExternalTransferFromIotDevice() {
@@ -30,7 +30,8 @@ class RulesEngineTest {
 
         assertThat(events)
                 .anyMatch(event -> event.getType() == SecurityEventType.POSSIBLE_DATA_EXFILTRATION
-                        && event.getRiskScore() >= 90);
+                        && event.getRiskScore() >= 90
+                        && "Exfiltration".equals(event.getMitreTactic()));
     }
 
     @Test

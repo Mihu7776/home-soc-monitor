@@ -1,7 +1,6 @@
 package com.security.home.detection;
 
 import com.security.home.entity.Device;
-import com.security.home.entity.EventSeverity;
 import com.security.home.entity.SecurityEvent;
 import com.security.home.entity.SecurityEventType;
 import com.security.home.model.NetworkObservation;
@@ -52,6 +51,11 @@ public class RulesEngine {
     );
 
     private final Map<String, DeviceActivity> activityBySource = new ConcurrentHashMap<>();
+    private final RiskScoringService riskScoringService;
+
+    public RulesEngine(RiskScoringService riskScoringService) {
+        this.riskScoringService = riskScoringService;
+    }
 
     public List<SecurityEvent> analyze(Device device) {
         return analyze(NetworkObservation.fromDevice(device));
@@ -83,15 +87,11 @@ public class RulesEngine {
             return;
         }
 
-        EventSeverity severity = isIotDevice(observation.vendor()) ? EventSeverity.HIGH : EventSeverity.MEDIUM;
-        int riskScore = isIotDevice(observation.vendor()) ? 82 : 62;
-
         alerts.add(event(
                 SecurityEventType.ROUTER_LOGIN_ATTEMPT,
-                severity,
                 "Router administration access attempt from " + displayDevice(observation),
                 observation,
-                riskScore,
+                isIotDevice(observation.vendor()) ? 68 : 52,
                 "destination=" + observation.destinationIp() + ":" + port
         ));
     }
@@ -107,10 +107,9 @@ public class RulesEngine {
             if (query.contains(pattern)) {
                 alerts.add(event(
                         SecurityEventType.SUSPICIOUS_DNS,
-                        EventSeverity.HIGH,
                         "Suspicious DNS query from " + displayDevice(observation),
                         observation,
-                        76,
+                        62,
                         "dnsQuery=" + observation.dnsQuery() + ", matchedPattern=" + pattern
                 ));
                 return;
@@ -133,10 +132,9 @@ public class RulesEngine {
         if (distinctPorts >= PORT_SCAN_DISTINCT_PORTS && activity.markPortScanAlert(now)) {
             alerts.add(event(
                     SecurityEventType.PORT_SCAN,
-                    EventSeverity.HIGH,
                     "Possible port scan from " + displayDevice(observation),
                     observation,
-                    86,
+                    70,
                     "distinctPorts=" + distinctPorts + ", windowSeconds=" + (PORT_SCAN_WINDOW_MS / 1000)
             ));
         }
@@ -164,29 +162,25 @@ public class RulesEngine {
             return;
         }
 
-        EventSeverity severity = windowBytes >= WINDOW_EXTERNAL_TRANSFER_BYTES
-                ? EventSeverity.CRITICAL
-                : EventSeverity.HIGH;
-
         alerts.add(event(
                 SecurityEventType.POSSIBLE_DATA_EXFILTRATION,
-                severity,
                 "Possible IoT data exfiltration from " + displayDevice(observation),
                 observation,
-                severity == EventSeverity.CRITICAL ? 96 : 90,
+                windowBytes >= WINDOW_EXTERNAL_TRANSFER_BYTES ? 80 : 72,
                 "bytesOut=" + bytesOut + ", windowBytes=" + windowBytes + ", destination=" + observation.destinationIp()
         ));
     }
 
     private SecurityEvent event(SecurityEventType type,
-                                EventSeverity severity,
                                 String message,
                                 NetworkObservation observation,
-                                Integer riskScore,
+                                int baseRiskScore,
                                 String evidence) {
+        RiskScoringService.RiskScore risk = riskScoringService.score(type, observation, baseRiskScore, evidence);
+
         return new SecurityEvent(
                 type,
-                severity,
+                risk.severity(),
                 message,
                 observation.sourceIp(),
                 observation.sourceMac(),
@@ -194,8 +188,10 @@ public class RulesEngine {
                 observation.destinationPort(),
                 observation.protocol(),
                 observation.bytesOut(),
-                riskScore,
-                evidence
+                risk.score(),
+                risk.mitreTactic(),
+                risk.mitreTechnique(),
+                risk.evidence()
         );
     }
 

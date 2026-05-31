@@ -12,7 +12,14 @@ Projekt symuluje prosty domowy SOC dla ruchu z urzadzen takich jak Smart TV, kam
 - probe logowania do panelu routera,
 - mozliwa eksfiltracje danych z urzadzen IoT do zewnetrznych adresow IP.
 
-Kazdy alert ma typ, waznosc, wynik ryzyka, zrodlo, cel, port, protokol, liczbe wyslanych bajtow i pole `evidence`, ktore tlumaczy dlaczego regula zadzialala.
+Kazdy alert ma typ, waznosc, wynik ryzyka, zrodlo, cel, port, protokol, liczbe wyslanych bajtow, pole `evidence` i mapowanie MITRE ATT&CK.
+
+Przykladowe mapowania MITRE:
+
+- `PORT_SCAN` -> Discovery / Network Service Discovery,
+- `SUSPICIOUS_DNS` -> Command and Control / DNS,
+- `POSSIBLE_DATA_EXFILTRATION` -> Exfiltration,
+- `ROUTER_LOGIN_ATTEMPT` -> Credential Access.
 
 ## Uruchomienie w Dockerze
 
@@ -21,6 +28,12 @@ docker compose up --build
 ```
 
 API bedzie dostepne na:
+
+```text
+http://localhost:8080
+```
+
+Dashboard SOC:
 
 ```text
 http://localhost:8080
@@ -46,6 +59,12 @@ Ruch atakujacego / podejrzana eksfiltracja:
 bash scripts/attacker-exfil.sh
 ```
 
+Ten sam scenariusz jako osobny kontener:
+
+```bash
+docker compose --profile attack up --build
+```
+
 Zasymuluj eksfiltracje ze Smart TV:
 
 ```bash
@@ -62,6 +81,12 @@ Pobierz ostatnie alerty:
 
 ```bash
 curl http://localhost:8080/api/events
+```
+
+Pobierz raport SOC:
+
+```bash
+curl http://localhost:8080/api/report
 ```
 
 Pobierz wykryte urzadzenia:
