@@ -1,49 +1,71 @@
 package com.security.home.detection;
 
-import com.security.home.entity.*;
+import com.security.home.entity.Device;
+import com.security.home.entity.EventSeverity;
+import com.security.home.entity.SecurityEvent;
+import com.security.home.entity.SecurityEventType;
+import com.security.home.model.NetworkObservation;
+import com.security.home.repository.DeviceRepository;
 import com.security.home.repository.SecurityEventRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class DetectionEngine {
 
-    private final Set<String> knownDevices = new HashSet<>();
+    private final Set<String> knownDevices = ConcurrentHashMap.newKeySet();
 
     private final RulesEngine rulesEngine;
     private final SecurityEventRepository repository;
+    private final DeviceRepository deviceRepository;
 
     public DetectionEngine(RulesEngine rulesEngine,
-                           SecurityEventRepository repository) {
+                           SecurityEventRepository repository,
+                           DeviceRepository deviceRepository) {
         this.rulesEngine = rulesEngine;
         this.repository = repository;
+        this.deviceRepository = deviceRepository;
     }
 
-    // =========================
-    // NORMAL TRAFFIC PIPELINE
-    // =========================
     public List<SecurityEvent> process(Device device) {
+        return processObservation(NetworkObservation.fromDevice(device));
+    }
 
+    public List<SecurityEvent> processObservation(NetworkObservation observation) {
         List<SecurityEvent> results = new ArrayList<>();
 
-        String mac = normalize(device.getMac());
+        if (observation == null) {
+            return results;
+        }
 
-        // NEW DEVICE DETECTION
-        if (knownDevices.add(mac)) {
+        String sourceKey = sourceKey(observation.sourceMac(), observation.sourceIp());
+
+        if (knownDevices.add(sourceKey)) {
+            registerDevice(observation);
 
             SecurityEvent event = new SecurityEvent(
                     SecurityEventType.NEW_DEVICE,
                     EventSeverity.MEDIUM,
-                    "New device joined network: " + device.getVendor(),
-                    device.getIp()
+                    "New device observed in home network: " + displayDevice(observation),
+                    observation.sourceIp(),
+                    observation.sourceMac(),
+                    observation.destinationIp(),
+                    observation.destinationPort(),
+                    observation.protocol(),
+                    observation.bytesOut(),
+                    45,
+                    "fingerprint=" + sourceKey
             );
 
             results.add(repository.save(event));
         }
 
-        // RULES ENGINE ANALYSIS
-        List<SecurityEvent> ruleEvents = rulesEngine.analyze(device);
+        List<SecurityEvent> ruleEvents = rulesEngine.analyze(observation);
 
         for (SecurityEvent event : ruleEvents) {
             results.add(repository.save(event));
@@ -52,34 +74,85 @@ public class DetectionEngine {
         return results;
     }
 
-    // =========================
-    // ATTACK PIPELINE
-    // =========================
     public List<SecurityEvent> processAttack(Device device) {
-
         List<SecurityEvent> results = new ArrayList<>();
+        List<Integer> scannedPorts = List.of(21, 22, 23, 53, 80, 443, 445, 554, 1883, 5000, 8080, 8443);
 
-        String mac = normalize(device.getMac());
-
-        for (int i = 0; i < 5; i++) {
-
-            SecurityEvent event = new SecurityEvent(
-                    SecurityEventType.PORT_SCAN,
-                    EventSeverity.HIGH,
-                    "Port scanning detected from device: " + device.getVendor(),
-                    device.getIp()
-            );
-
-            results.add(repository.save(event));
+        for (Integer port : scannedPorts) {
+            results.addAll(processObservation(new NetworkObservation(
+                    device.getIp(),
+                    device.getMac(),
+                    device.getVendor(),
+                    "192.168.0.1",
+                    port,
+                    "TCP",
+                    600L,
+                    null
+            )));
         }
+
+        results.addAll(processObservation(new NetworkObservation(
+                device.getIp(),
+                device.getMac(),
+                device.getVendor(),
+                "8.8.8.8",
+                53,
+                "UDP",
+                250L,
+                "camera-feed.webhook.site"
+        )));
+
+        results.addAll(processObservation(new NetworkObservation(
+                device.getIp(),
+                device.getMac(),
+                device.getVendor(),
+                "34.117.59.81",
+                443,
+                "TLS",
+                2_500_000L,
+                null
+        )));
 
         return results;
     }
 
-    // =========================
-    // UTILS
-    // =========================
-    private String normalize(String mac) {
-        return mac == null ? "UNKNOWN" : mac.toUpperCase(Locale.ROOT).trim();
+    private void registerDevice(NetworkObservation observation) {
+        if (observation.sourceMac() == null || observation.sourceMac().isBlank()) {
+            return;
+        }
+
+        deviceRepository.findByMacIgnoreCase(observation.sourceMac().trim())
+                .orElseGet(() -> deviceRepository.save(new Device(
+                        observation.sourceIp(),
+                        observation.sourceMac(),
+                        observation.vendor()
+                )));
+    }
+
+    private String sourceKey(String mac, String ip) {
+        String normalizedMac = normalize(mac);
+
+        if (!"UNKNOWN".equals(normalizedMac)) {
+            return normalizedMac;
+        }
+
+        String normalizedIp = normalize(ip);
+
+        return "UNKNOWN".equals(normalizedIp) ? "UNKNOWN-SOURCE" : normalizedIp;
+    }
+
+    private String displayDevice(NetworkObservation observation) {
+        String vendor = observation.vendor() == null || observation.vendor().isBlank()
+                ? "Unknown vendor"
+                : observation.vendor().trim();
+        String sourceIp = observation.sourceIp() == null || observation.sourceIp().isBlank()
+                ? "unknown IP"
+                : observation.sourceIp().trim();
+
+        return vendor + " (" + sourceIp + ")";
+    }
+
+    private String normalize(String value) {
+        return value == null || value.isBlank() ? "UNKNOWN" : value.toUpperCase(Locale.ROOT).trim();
     }
 }
