@@ -2,6 +2,7 @@ package com.security.home.detection;
 
 import com.security.home.entity.SecurityEvent;
 import com.security.home.entity.SecurityEventType;
+import com.security.home.detection.dns.DnsQueryParser;
 import com.security.home.model.NetworkObservation;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class RulesEngineTest {
 
-    private final RulesEngine rulesEngine = new RulesEngine(new RiskScoringService());
+    private final RulesEngine rulesEngine = new RulesEngine(new RiskScoringService(), new DnsQueryParser());
 
     @Test
     void detectsLargeExternalTransferFromIotDevice() {
@@ -91,5 +92,26 @@ class RulesEngineTest {
 
         assertThat(events)
                 .anyMatch(event -> event.getType() == SecurityEventType.SUSPICIOUS_DNS);
+    }
+
+    @Test
+    void detectsNormalizedSuspiciousDnsQuery() {
+        NetworkObservation observation = new NetworkObservation(
+                "192.168.0.14",
+                "AA:BB:CC:05",
+                "IoT Camera",
+                "8.8.8.8",
+                53,
+                "UDP",
+                200L,
+                "  Camera-Feed.WebHook.Site. "
+        );
+
+        List<SecurityEvent> events = rulesEngine.analyze(observation);
+
+        assertThat(events)
+                .anyMatch(event -> event.getType() == SecurityEventType.SUSPICIOUS_DNS
+                        && event.getEvidence().contains("dnsQuery=camera-feed.webhook.site")
+                        && event.getEvidence().contains("baseDomain=webhook.site"));
     }
 }
