@@ -3,6 +3,8 @@ package com.security.home.detection;
 import com.security.home.entity.Device;
 import com.security.home.entity.SecurityEvent;
 import com.security.home.entity.SecurityEventType;
+import com.security.home.detection.dns.DnsQueryParser;
+import com.security.home.detection.dns.ParsedDnsQuery;
 import com.security.home.model.NetworkObservation;
 import org.springframework.stereotype.Service;
 
@@ -52,9 +54,11 @@ public class RulesEngine {
 
     private final Map<String, DeviceActivity> activityBySource = new ConcurrentHashMap<>();
     private final RiskScoringService riskScoringService;
+    private final DnsQueryParser dnsQueryParser;
 
-    public RulesEngine(RiskScoringService riskScoringService) {
+    public RulesEngine(RiskScoringService riskScoringService, DnsQueryParser dnsQueryParser) {
         this.riskScoringService = riskScoringService;
+        this.dnsQueryParser = dnsQueryParser;
     }
 
     public List<SecurityEvent> analyze(Device device) {
@@ -97,20 +101,21 @@ public class RulesEngine {
     }
 
     private void detectSuspiciousDns(NetworkObservation observation, List<SecurityEvent> alerts) {
-        String query = normalizeText(observation.dnsQuery());
+        ParsedDnsQuery query = dnsQueryParser.parse(observation.dnsQuery()).orElse(null);
 
         if (query == null) {
             return;
         }
 
         for (String pattern : SUSPICIOUS_DNS_PATTERNS) {
-            if (query.contains(pattern)) {
+            if (query.normalizedQuery().contains(pattern)) {
                 alerts.add(event(
                         SecurityEventType.SUSPICIOUS_DNS,
                         "Suspicious DNS query from " + displayDevice(observation),
                         observation,
                         62,
-                        "dnsQuery=" + observation.dnsQuery() + ", matchedPattern=" + pattern
+                        "dnsQuery=" + query.normalizedQuery() + ", baseDomain=" + query.baseDomain()
+                                + ", matchedPattern=" + pattern
                 ));
                 return;
             }

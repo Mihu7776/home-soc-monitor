@@ -1,46 +1,11 @@
 services:
-  postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-homesoc}
-      POSTGRES_USER: ${POSTGRES_USER:-homesoc}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Copy .env.example to .env and set POSTGRES_PASSWORD}
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
-      interval: 5s
-      timeout: 5s
-      retries: 12
-    networks:
-      - home-soc-lab
-
   home-soc-monitor:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     container_name: home-soc-monitor
     ports:
-      - "${APP_PORT:-8080}:8080"
+      - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: docker
-      SERVER_PORT: 8080
-      POSTGRES_HOST: postgres
-      POSTGRES_DB: ${POSTGRES_DB:-homesoc}
-      POSTGRES_USER: ${POSTGRES_USER:-homesoc}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Copy .env.example to .env and set POSTGRES_PASSWORD}
-    restart: unless-stopped
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - home-soc-lab
-    healthcheck:
-      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/actuator/health | grep -q UP"]
-      interval: 10s
-      timeout: 5s
-      retries: 6
-      start_period: 30s
 
   attacker:
     image: curlimages/curl:8.10.1
@@ -48,38 +13,12 @@ services:
     profiles:
       - attack
     depends_on:
-      home-soc-monitor:
-        condition: service_healthy
+      - home-soc-monitor
     environment:
       API_URL: http://home-soc-monitor:8080
-      SOURCE_IP: ${ATTACKER_SOURCE_IP:-192.168.0.14}
-      SOURCE_MAC: ${ATTACKER_SOURCE_MAC:-AA:BB:CC:05}
-      VENDOR: ${ATTACKER_VENDOR:-IoT Camera}
+      SOURCE_IP: 192.168.0.14
+      SOURCE_MAC: AA:BB:CC:05
+      VENDOR: IoT Camera
     volumes:
       - ./scripts:/scripts:ro
-    networks:
-      - home-soc-lab
     entrypoint: ["sh", "/scripts/attacker-exfil.sh"]
-
-  iot-normal-traffic:
-    image: curlimages/curl:8.10.1
-    container_name: home-soc-iot-normal-traffic
-    profiles:
-      - traffic
-    depends_on:
-      home-soc-monitor:
-        condition: service_healthy
-    environment:
-      API_URL: http://home-soc-monitor:8080
-    volumes:
-      - ./scripts:/scripts:ro
-    networks:
-      - home-soc-lab
-    entrypoint: ["sh", "/scripts/normal-traffic.sh"]
-
-networks:
-  home-soc-lab:
-    name: home-soc-lab
-
-volumes:
-  postgres-data:
