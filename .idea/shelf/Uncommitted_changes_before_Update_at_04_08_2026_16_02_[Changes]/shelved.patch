@@ -1,0 +1,159 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"5ce3d8d8-bc74-4892-80ff-9245b2037f96\" name=\"Changes\" comment=\"Projekt bezpieczenstwa sieci\">\r\n      <change afterPath=\"$PROJECT_DIR$/docker-compose.yml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/vcs.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/home-soc-monitor/.env.example\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/home-soc-monitor/.env.example\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/home-soc-monitor/.gitignore\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/home-soc-monitor/.gitignore\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/home-soc-monitor/README.md\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/home-soc-monitor/README.md\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/home-soc-monitor/docker-compose.yml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/home-soc-monitor/docker-compose.yml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/home-soc-monitor/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/home-soc-monitor/pom.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/home-soc-monitor/src/main/resources/application.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/home-soc-monitor/src/main/resources/application.properties\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CopilotChats\">\r\n    <option name=\"panelChat\">\r\n      <chat>\r\n        <option name=\"activeSessionId\" value=\"de9700f0-771a-4830-9825-e6458d56993e\" />\r\n        <option name=\"sessions\">\r\n          <session>\r\n            <option name=\"chatType\" value=\"PANEL\" />\r\n            <option name=\"id\" value=\"de9700f0-771a-4830-9825-e6458d56993e\" />\r\n            <option name=\"modeId\" value=\"Ask\" />\r\n            <option name=\"modelType\" value=\"builtin_family\" />\r\n            <option name=\"modelValue\" value=\"auto\" />\r\n            <option name=\"targetType\" value=\"LOCAL\" />\r\n          </session>\r\n        </option>\r\n        <option name=\"type\" value=\"PANEL\" />\r\n      </chat>\r\n    </option>\r\n  </component>\r\n  <component name=\"CopilotPersistence\">\r\n    <persistenceIdMap>\r\n      <entry key=\"_C:/Users/Michal Swislocki/IdeaProjects/home-network-threat-detection\" value=\"3CgDgAZeYBkkSyhM2scn6PnIVX9\" />\r\n    </persistenceIdMap>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Enum\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Mihu7776&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Mihu7776/home-soc-monitor.git&quot;,\r\n    &quot;accountId&quot;: &quot;6e86646b-00f7-4319-8b56-964366fc31d4&quot;\r\n  }\r\n}</component>\r\n  <component name=\"McpProjectServerCommands\">\r\n    <commands />\r\n    <urls />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 2,\r\n  &quot;fromUser&quot;: false\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3CgDgAZeYBkkSyhM2scn6PnIVX9\" />\r\n  <component name=\"ProjectSessionTemplates\">\r\n    <option name=\"panelTemplate\">\r\n      <template>\r\n        <option name=\"modeId\" value=\"Agent\" />\r\n        <option name=\"model\">\r\n          <model>\r\n            <option name=\"modelType\" value=\"builtin_id\" />\r\n            <option name=\"modelValue\" value=\"auto\" />\r\n          </model>\r\n        </option>\r\n        <option name=\"targetType\" value=\"BACKGROUND\" />\r\n        <option name=\"worktreeMode\" value=\"WORKSPACE\" />\r\n      </template>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.Main.executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.home-network-threat-detection [org.springframework.boot:spring-boot-maven-plugin:3.3.5:run].executor&quot;: &quot;Run&quot;,\r\n    &quot;Maven.home-network-threat-detection [test].executor&quot;: &quot;Run&quot;,\r\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\r\n    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,\r\n    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,\r\n    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,\r\n    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,\r\n    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;Spring Boot.HomeNetworkThreatDetectionApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,\r\n    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,\r\n    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Michal Swislocki/IdeaProjects/home-network-threat-detection/src/main/java/com/security/home/Main.java&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,\r\n    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\Michal Swislocki\\IdeaProjects\\home-network-threat-detection\\src\\main\\java\\com\\security\\home\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"HomeNetworkThreatDetectionApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"home-network-threat-detection\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.security.home.HomeNetworkThreatDetectionApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"StructureViewState\">\r\n    <option name=\"selectedTab\" value=\"Logical\" />\r\n  </component>\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration>C:\\Users\\Michal Swislocki\\AppData\\Roaming\\Subversion</configuration>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"5ce3d8d8-bc74-4892-80ff-9245b2037f96\" name=\"Changes\" comment=\"\" />\r\n      <created>1776798427615</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1776798427615</updated>\r\n      <workItem from=\"1778685070696\" duration=\"716000\" />\r\n      <workItem from=\"1778705757522\" duration=\"196000\" />\r\n      <workItem from=\"1778706085380\" duration=\"6000\" />\r\n      <workItem from=\"1778706118468\" duration=\"328000\" />\r\n      <workItem from=\"1778706661419\" duration=\"4041000\" />\r\n      <workItem from=\"1778759136578\" duration=\"1495000\" />\r\n      <workItem from=\"1778849386237\" duration=\"40000\" />\r\n      <workItem from=\"1778863894660\" duration=\"352000\" />\r\n      <workItem from=\"1778931709129\" duration=\"1042000\" />\r\n      <workItem from=\"1779050170699\" duration=\"123000\" />\r\n      <workItem from=\"1779261385462\" duration=\"42000\" />\r\n      <workItem from=\"1779366593661\" duration=\"803000\" />\r\n      <workItem from=\"1779372957309\" duration=\"21000\" />\r\n      <workItem from=\"1779800901149\" duration=\"4226000\" />\r\n      <workItem from=\"1779973727039\" duration=\"14000\" />\r\n      <workItem from=\"1780220217878\" duration=\"35000\" />\r\n      <workItem from=\"1780241202494\" duration=\"18000\" />\r\n      <workItem from=\"1780241248454\" duration=\"16000\" />\r\n      <workItem from=\"1785223573742\" duration=\"325000\" />\r\n      <workItem from=\"1785223942015\" duration=\"32000\" />\r\n      <workItem from=\"1785236926888\" duration=\"2007000\" />\r\n      <workItem from=\"1785306861344\" duration=\"1872000\" />\r\n      <workItem from=\"1785314467525\" duration=\"2491000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Projekt bezpieczenstwa sieci\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1776800280361</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1776800280361</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Projekt bezpieczenstwa sieci\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1776800298116</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1776800298116</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Projekt bezpieczenstwa sieci\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1778331422715</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1778331422716</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Projekt bezpieczenstwa sieci\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1778331458585</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1778331458585</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Projekt bezpieczenstwa sieci\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1778710683751</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1778710683751</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Projekt bezpieczenstwa sieci\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1778864212696</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1778864212696</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"7\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Projekt bezpieczenstwa sieci\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Projekt bezpieczenstwa sieci\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n  <component name=\"github-copilot-workspace\">\r\n    <instructionFileLocations>\r\n      <option value=\".github/instructions\" />\r\n    </instructionFileLocations>\r\n    <promptFileLocations>\r\n      <option value=\".github/prompts\" />\r\n    </promptFileLocations>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 782f6f0247c0bbd53f34cfc03ca1b8f7764a9cd3)
++++ b/.idea/workspace.xml	(date 1785851918301)
+@@ -4,17 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="5ce3d8d8-bc74-4892-80ff-9245b2037f96" name="Changes" comment="Projekt bezpieczenstwa sieci">
+-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
++    <list default="true" id="5ce3d8d8-bc74-4892-80ff-9245b2037f96" name="Changes" comment="Projekt bezpieczenstwa sieci&#10;Package app for Linux Docker run">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/home-soc-monitor/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/home-soc-monitor/.env.example" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/home-soc-monitor/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/home-soc-monitor/.gitignore" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/home-soc-monitor/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/home-soc-monitor/README.md" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/home-soc-monitor/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/home-soc-monitor/docker-compose.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/home-soc-monitor/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/home-soc-monitor/pom.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/home-soc-monitor/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/home-soc-monitor/src/main/resources/application.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -54,6 +45,7 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="ROOT_SYNC" value="SYNC" />
+     <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+@@ -99,45 +91,45 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+-    &quot;Maven.home-network-threat-detection [org.springframework.boot:spring-boot-maven-plugin:3.3.5:run].executor&quot;: &quot;Run&quot;,
+-    &quot;Maven.home-network-threat-detection [test].executor&quot;: &quot;Run&quot;,
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;Spring Boot.HomeNetworkThreatDetectionApplication.executor&quot;: &quot;Run&quot;,
+-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+-    &quot;copilot.chat.legacySessionMetadata.migrated&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Michal Swislocki/IdeaProjects/home-network-threat-detection/src/main/java/com/security/home/Main.java&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.Main.executor": "Run",
++    "Maven.home-network-threat-detection [org.springframework.boot:spring-boot-maven-plugin:3.3.5:run].executor": "Run",
++    "Maven.home-network-threat-detection [test].executor": "Run",
++    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "RequestMappingsPanelOrder0": "0",
++    "RequestMappingsPanelOrder1": "1",
++    "RequestMappingsPanelWidth0": "75",
++    "RequestMappingsPanelWidth1": "75",
++    "RunOnceActivity.MCP Project settings loaded": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "Spring Boot.HomeNetworkThreatDetectionApplication.executor": "Run",
++    "codeWithMe.voiceChat.enabledByDefault": "false",
++    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
++    "copilot.chat.legacySessionMetadata.migrated": "true",
++    "git-widget-placeholder": "master",
++    "junie.onboarding.icon.badge.shown": "true",
++    "kotlin-language-version-configured": "true",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.standard": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.standard": "",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "onboarding.tips.debug.path": "C:/Users/Michal Swislocki/IdeaProjects/home-network-threat-detection/src/main/java/com/security/home/Main.java",
++    "project.structure.last.edited": "Project",
++    "project.structure.proportion": "0.15",
++    "project.structure.side.proportion": "0.2",
++    "settings.editor.selected.configurable": "MavenSettings",
++    "to.speed.mode.migration.done": "true",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\Michal Swislocki\IdeaProjects\home-network-threat-detection\src\main\java\com\security\home" />
+@@ -194,7 +186,9 @@
+       <workItem from="1785223942015" duration="32000" />
+       <workItem from="1785236926888" duration="2007000" />
+       <workItem from="1785306861344" duration="1872000" />
+-      <workItem from="1785314467525" duration="2491000" />
++      <workItem from="1785314467525" duration="3234000" />
++      <workItem from="1785398904179" duration="287000" />
++      <workItem from="1785851176798" duration="674000" />
+     </task>
+     <task id="LOCAL-00001" summary="Projekt bezpieczenstwa sieci">
+       <option name="closed" value="true" />
+@@ -244,7 +238,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1778864212696</updated>
+     </task>
+-    <option name="localTasksCounter" value="7" />
++    <task id="LOCAL-00007" summary="Projekt bezpieczenstwa sieci&#10;Package app for Linux Docker run">
++      <option name="closed" value="true" />
++      <created>1785322988414</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1785322988415</updated>
++    </task>
++    <option name="localTasksCounter" value="8" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -263,7 +265,8 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Projekt bezpieczenstwa sieci" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Projekt bezpieczenstwa sieci" />
++    <MESSAGE value="Projekt bezpieczenstwa sieci&#10;Package app for Linux Docker run" />
++    <option name="LAST_COMMIT_MESSAGE" value="Projekt bezpieczenstwa sieci&#10;Package app for Linux Docker run" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
